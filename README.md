@@ -22,6 +22,10 @@ ngad/
 
 + `client-api` - the API microservice that handles the clients (companies & organisations).
 
+```shell
+$ cd platform/client-api
+```
+
 ## Client API
 
 ### Initialization
@@ -143,4 +147,43 @@ The response:
     "description": "Temporary company"
   }
 }
+```
+
+## Database
+At the initial stages of development for the application, the temporary array will be replaced with a database. `SQLite` will be used for development before a switch to a production-level database at a later stage.
+
++ Easy and clean to start with
++ Uses SQL syntax
++ No separate database needed at this stage
+
+We can look to scale to a better database, such as `PostegreSQL` later.
+
+Check that we have `SQLite` installed:
+
+```shell
+$ sqlite3 --version
+```
+
+Should get response like this:
+
+```shell
+3.37.0 2021-12-09 01:34:53 9ff244ce0739f8ee52a3e9671adb4ee54c83c640b02e3f9d185fd2f9a179aapl
+```
+
+We will setup `Prisma` as our `ORM` to make it easy to work with our database.
+
+```shell
+$ npm install prisma --save-dev
+$ npx prisma init
+```
+
+This will create a `prisma` folder directory containing a `schema.prisma` file and in our main folder, an `.env` environment file.
+
++ `schema.primsa` - the database schema is here
++ `.env` - the database connection config
+
+The `.env` file is opened and updated to replace the database URL with the following to tell Prisma to use a local SQLite file called `dev.db`.
+
+```
+DATABASE_URL="file:./dev.db"
 ```
