@@ -66,7 +66,7 @@ $ node server.js
 
 This will run on the port provided: `http://localhost:3001`
 
-### Adding a Health Check Route
+### Adding a Health Check Route
 A `health check route` is a simple endpoint that helps to confirm that the API is alive and reachable.
 
 The route/endpoint looks like this:
