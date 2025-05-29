@@ -121,3 +121,26 @@ The response:
 ```
 
 Another `GET` request can be used to confirm this has been added.
+
+### Delete Endpoint
+Once a company/organisation has been added, it can then be deleted using the `DELETE /companies/:id` endpoint.
+
+```shell
+$ curl -X DELETE http://localhost:3001/companies/PUT_ID_HERE
+
+# Example:
+curl -X DELETE http://localhost:3001/companies/1720001234567
+```
+
+The response:
+
+```shell
+{
+  "message": "Company deleted",
+  "company": {
+    "id": 1720001234567,
+    "name": "TestCo",
+    "description": "Temporary company"
+  }
+}
+```

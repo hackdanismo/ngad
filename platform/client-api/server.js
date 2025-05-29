@@ -40,6 +40,23 @@ app.post('/companies', (req, res) => {
     res.status(201).json(newCompany);
 });
 
+// Endpoint: DELETE /companies/:id - remove a company/organisation by its ID
+app.delete('/companies', (req, res) => {
+    // Get the ID value from the URL route parameter
+    const companyId = parseInt(req.params.id);
+    // Use the findIndex function to locate the company/organisation in the temporary database array
+    const index = companies.findIndex(c => c.id === companyId);
+
+    if (index === -1) {
+        return res.status(404).json({ error: 'Company is not found' });
+    }
+
+    // Remove the company/organisation using the splice function
+    const deleted = companies.splice(index, 1);
+    // Return response if successful
+    res.status(200).json({ message: 'Company deleted', company: deleted[0] });
+});
+
 // Start the server and listen for incoming HTTP requests on the port number
 app.listen(PORT, () => {
     // Log message to confirm the server is running
