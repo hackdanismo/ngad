@@ -5,6 +5,9 @@ const app = express();
 // Define the port number for the server 
 const PORT = 3001;
 
+// Middleware to parse JSON from request bodies
+app.use(express.json());
+
 // Health check route/endpoint to check the API is okay
 app.get('/health', (req, res) => {
     res.status(200).json({ status: 'OK', message: 'API is running' });
