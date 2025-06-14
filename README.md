@@ -230,3 +230,14 @@ To connect the Express `server.js` code to out SQLite database via the Prisma OR
 ```shell
 $ npm install @prisma/client
 ```
+
+This will install `Prisma Client` - a library that allows our Node application to interact with our database using JavaScript/TypeScript instead of raw SQL.
+
+Once this is installed, we can update the `server.js` file to use `Prisma` to connect to the SQLite database and store data in the database table created earlier, named `Company`.
+
+### Test the API
+We can now test the API: `http://localhost:3001/health`
+
+```shell
+$ node server.js
+```
