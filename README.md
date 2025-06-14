@@ -223,3 +223,10 @@ $ npx prisma migrate dev --name init
 + Generates the Prisma client to: `../generated/prisma` folder
 + Apply the model to the SQLite database - `dev.db`
 + Prepare everything for use in the Express application
+
+### Connect Express Server to Prisma and Database
+To connect the Express `server.js` code to out SQLite database via the Prisma ORM, we must install the following package:
+
+```shell
+$ npm install @prisma/client
+```
