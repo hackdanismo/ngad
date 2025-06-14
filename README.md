@@ -343,3 +343,41 @@ We can now test the API: `http://localhost:3001/health`
 ```shell
 $ node server.js
 ```
+
+### Add a Company to the Database using the API
+Using `cURL` in the terminal to call the API endpoint and add a company to the database table named `Company` in the SQLite database from within the `server.js` file and using the Prisma ORM to handle the connection/query.
+
+The server should be running first:
+
+```shell
+$ node server.js
+```
+
+Then run the command (perhaps in a separate terminal):
+
+```shell
+curl -X POST http://localhost:3001/companies \
+     -H "Content-Type: application/json" \
+     -d '{"name": "Taxi Dan", "description": "A taxi company based in Brighton"}'
+```
+
+### View the Database
+Prisma has a built-in Studio that provides a visual UI for browsing and editing data in the database. This will open a browser window: `http://localhost:5555`
+
+```shell
+$ npx prisma studio
+```
+
+We can also view the database in the terminal:
+
+```shell
+$ sqlite3 dev.db
+```
+
+Then run SQL inside the prompt:
+
+```sql
+.tables
+SELECT * FROM Company;
+.quit
+```
