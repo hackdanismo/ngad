@@ -187,3 +187,26 @@ The `.env` file is opened and updated to replace the database URL with the follo
 ```
 DATABASE_URL="file:./dev.db"
 ```
+
+### Define a Schema
+In the `Prisma` setup file: `prisma/schema.prisma`, we can define a modal for the Company:
+
+```
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  //provider = "postgresql"
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Company {
+  id              Int      @id @default(autoincrement())
+  name            String
+  description     String
+  createdAt       DateTime @default(now())
+}
+```
