@@ -210,3 +210,16 @@ model Company {
   createdAt       DateTime @default(now())
 }
 ```
+
+Once the schema file has been updated and save, run these commands:
+
+```shell
+$ cd platform/client-api
+
+$ npx prisma generate
+$ npx prisma migrate dev --name init
+```
+
++ Generates the Prisma client to: `../generated/prisma` folder
++ Apply the model to the SQLite database - `dev.db`
++ Prepare everything for use in the Express application
