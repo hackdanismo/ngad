@@ -390,6 +390,20 @@ The frontend relies on the `client-api` server to be running as this is where th
 $ node server.js
 ```
 
+Installed cors to allow the connection between the frontend and server inside of the `client-api` folder:
+
+```shell
+$ npm install cors
+```
+
+Run the development server for the Next application:
+
+```shell
+$ npm run dev
+```
+
+The application can be viewed here: `http://localhost:3000/`
+
 We bootstrap a `Next` application:
 
 ```shell
