@@ -4,9 +4,14 @@ const { PrismaClient } = require('@prisma/client');
 
 // Create an instance of the Express library
 const app = express();
+// Setup CORS
+const cors = require('cors');
 const prisma = new PrismaClient();
 // Define the port number for the server 
 const PORT = 3001;
+
+// Use CORS middleware before defining routes
+app.use(cors());
 
 // Middleware to parse JSON from request bodies
 app.use(express.json());

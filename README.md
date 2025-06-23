@@ -21,6 +21,7 @@ ngad/
 ```
 
 + `client-api` - the API microservice that handles the clients (companies & organisations).
++ `frontend` - the Next application for rendering the UI.
 
 ```shell
 $ cd platform/client-api
@@ -381,3 +382,32 @@ Then run SQL inside the prompt:
 SELECT * FROM Company;
 .quit
 ```
+
+## Frontend (Next)
+The frontend relies on the `client-api` server to be running as this is where the data is pulled from to display on the frontend.
+
+```shell
+$ node server.js
+```
+
+We bootstrap a `Next` application:
+
+```shell
+$ npx create-next-app@latest
+```
+
+Installing dependencies:
+- react
+- react-dom
+- next
+
+Installing devDependencies:
+- typescript
+- @types/node
+- @types/react
+- @types/react-dom
+- @tailwindcss/postcss
+- tailwindcss
+- eslint
+- eslint-config-next
+- @eslint/eslintrc
