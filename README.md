@@ -425,3 +425,5 @@ Installing devDependencies:
 - eslint
 - eslint-config-next
 - @eslint/eslintrc
+
+When the frontend application is running and the `client-api` server is running, the data should now be displayed on the frontend.
