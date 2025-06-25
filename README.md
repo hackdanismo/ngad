@@ -427,3 +427,10 @@ Installing devDependencies:
 - @eslint/eslintrc
 
 When the frontend application is running and the `client-api` server is running, the data should now be displayed on the frontend.
+
+## Routes
+Each client (company/organisation) uses a dynamic route/page - `src/app/clients/[id]/page.tsx` - to display information about the company.
+
+For example: `http://localhost:3000/clients/1` will display the first company/organisation that matches the ID of `1` in the database.
+
+The `client-api` has been updated with an endpoint to GET this data.

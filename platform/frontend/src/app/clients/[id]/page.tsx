@@ -9,16 +9,15 @@ type Company = {
 async function getCompany(id: string): Promise<Company | null> {
   try {
     const res = await fetch(`http://localhost:3001/companies/${id}`, {
-      next: { revalidate: 10 } // Optional: ISR for fresh data every 10s
+      //next: { revalidate: 10 } // Optional: ISR for fresh data every 10s
+      cache: 'no-store',
     });
 
-    if (!res.ok) {
-      return null;
-    }
+    if (!res.ok) return null;
 
     return res.json();
-  } catch (error) {
-    console.error('Error fetching company:', error);
+  } catch (err) {
+    console.error('Error fetching company:', err);
     return null;
   }
 }
