@@ -14,6 +14,7 @@ export default function Home() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     fetchCompanies();
@@ -61,6 +62,10 @@ export default function Home() {
     }
   };
 
+  const filteredCompanies = companies.filter((company) =>
+    company.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -87,11 +92,20 @@ export default function Home() {
         </button>
       </form>
 
+      <div>
+        <input
+          type="text"
+          placeholder="Search companies by name"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
+
       {loading ? (
         <p>Loading...</p>
-      ) : companies.length > 0 ? (
+      ) : filteredCompanies.length > 0 ? (
         <ul>
-          {companies.map((company) => (
+          {filteredCompanies.map((company) => (
             <li key={company.id}>
               <strong>{company.name}</strong>: {company.description}
             </li>
