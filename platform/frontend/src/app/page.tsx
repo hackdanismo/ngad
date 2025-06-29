@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import Link from 'next/link'
 
 type Company = {
   id: number;
@@ -107,7 +108,9 @@ export default function Home() {
         <ul>
           {filteredCompanies.map((company) => (
             <li key={company.id}>
-              <strong>{company.name}</strong>: {company.description}
+              <Link href={`/clients/${company.id}`}>
+                <strong>{company.name}</strong>: {company.description}
+              </Link>
             </li>
           ))}
         </ul>
