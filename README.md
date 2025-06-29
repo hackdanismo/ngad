@@ -434,3 +434,9 @@ Each client (company/organisation) uses a dynamic route/page - `src/app/clients/
 For example: `http://localhost:3000/clients/1` will display the first company/organisation that matches the ID of `1` in the database.
 
 The `client-api` has been updated with an endpoint to GET this data.
+
+The `layout.tsx` file in the root of the frontend application is the global layout. Any changes here will be applied to all pages in the application. This is ideal for adding navigation, header, footer and other global elements.
+
+## Pages
+A new client page, to add a new client, can be found here:
+`http://localhost:3000/clients/new`
