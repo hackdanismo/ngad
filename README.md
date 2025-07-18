@@ -13,13 +13,14 @@ This is the file structure of the application:
 ```
 ngad/
 ├── platform/
+│   ├── booking-api/
 │   ├── client-api/
-│   ├── auth-service/
 │   └── frontend/
 ├── packages/
 │   └── shared-utils/
 ```
 
++ `booking-api` - the API to handle bookings.
 + `client-api` - the API microservice that handles the clients (companies & organisations).
 + `frontend` - the Next application for rendering the UI.
 
@@ -440,3 +441,13 @@ The `layout.tsx` file in the root of the frontend application is the global layo
 ## Pages
 A new client page, to add a new client, can be found here:
 `http://localhost:3000/clients/new`
+
+## Bookings
+Bookings are handled by the `booking-api`. Within this directory/folder, there is a `requirements.txt` file that lists all the dependencies. To setup the dependencies/packages:
+
+```shell
+$ cd platform/booking-api
+$ pip3 install -r requirements.txt
+```
+
+The `booking-api` is a Flask application using Python.
