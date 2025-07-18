@@ -451,3 +451,22 @@ $ pip3 install -r requirements.txt
 ```
 
 The `booking-api` is a Flask application using Python.
+
+To run the `booking-api` server:
+
+```shell
+$ python3 app.py
+```
+
+We can inspect the database - `booking-dev.db` using:
+
+```shell
+$ sqlite3 booking-dev.db
+```
+
+Then run:
+
+```shell
+$ .tables
+$ SELECT * FROM booking;
+```
