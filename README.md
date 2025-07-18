@@ -470,3 +470,15 @@ Then run:
 $ .tables
 $ SELECT * FROM booking;
 ```
+
+### Make a Booking
+
+Make sure:
+
++ Flask server (`booking-api`) is running: `http://127.0.0.1:5001` - $ python3 app.py
++ Next.js server (`frontend`) is running: `http://localhost:3000` - $ npm run dev
++ Express API (`client-api`) is running: `http://localhost:3001` - $ node server.js
+
+Go to: `http://localhost:3000/clients/1` (replace 1 with an existing company ID)
+
+Click `“Make Booking”` CTA button
