@@ -12,7 +12,11 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
 with app.app_context():
-    db.create_all()
+    # print("📦 Models loaded:", db.Model._decl_class_registry.keys())  # Should include 'Booking'
+    # db.create_all()
+    import models  # 👈 ensure models are loaded
+    models.db.metadata.create_all(bind=models.db.engine)
+    print("✅ Tables created")
 
 @app.route('/')
 def index():

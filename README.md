@@ -461,6 +461,7 @@ $ python3 app.py
 We can inspect the database - `booking-dev.db` using:
 
 ```shell
+$ cd instance
 $ sqlite3 booking-dev.db
 ```
 
