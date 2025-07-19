@@ -24,7 +24,7 @@ async function getCompany(id: string): Promise<Company | null> {
   }
 }
 
-export default async function ClientPage({ params }: { params: { id: string } }) {
+export default function ClientPage({ params }: { params: { id: string } }) {
   //const company = await getCompany(params.id);
   const [company, setCompany] = useState<Company | null>(null);
   const [bookingMessage, setBookingMessage] = useState('');
