@@ -1,4 +1,6 @@
-import React from 'react';
+'use client';
+
+import React, { useState, useEffect, use } from 'react';
 
 type Company = {
   id: number;
@@ -22,17 +24,64 @@ async function getCompany(id: string): Promise<Company | null> {
   }
 }
 
-export default async function ClientPage({ params }: { params: { id: string } }) {
-  const company = await getCompany(params.id);
+export default function ClientPage({ params }: { params: Promise<{ id: string }> }) {
+  // Unwrap the params using React.use()
+  const { id } = use(params);
+
+  //const company = await getCompany(params.id);
+  const [company, setCompany] = useState<Company | null>(null);
+  const [bookingMessage, setBookingMessage] = useState('');
+
+  useEffect(() => {
+    (async () => {
+      const result = await getCompany(id);
+      setCompany(result);
+    })();
+  }, [id]);
+
+  const handleBooking = async () => {
+    try {
+      // Connect to the booking-api Python/Flask API
+      const res = await fetch('http://127.0.0.1:5001/bookings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          company_id: parseInt(id),
+          note: 'Booking created from the frontend'
+        }),
+      });
+
+      if (!res.ok) {
+        setBookingMessage('Failed to create booking.');
+        return;
+      }
+
+      const data = await res.json();
+      setBookingMessage(`Booking created at ${new Date(data.timestamp).toLocaleString()}`);
+    } catch (err) {
+      console.error(err);
+      setBookingMessage('Error contacting the booking-api service.');
+    }
+  };
 
   if (!company) {
     return <div>Client not found.</div>;
   }
 
+  /*
+  if (!company) {
+    return <div>Client not found.</div>;
+  }
+  */
+
   return (
     <div>
       <h1>{company.name}</h1>
       <p>{company.description}</p>
+
+      <button onClick={handleBooking}>Make Booking</button>
+
+      {bookingMessage && <p>{bookingMessage}</p>}
     </div>
   );
 }

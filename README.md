@@ -13,13 +13,14 @@ This is the file structure of the application:
 ```
 ngad/
 ├── platform/
+│   ├── booking-api/
 │   ├── client-api/
-│   ├── auth-service/
 │   └── frontend/
 ├── packages/
 │   └── shared-utils/
 ```
 
++ `booking-api` - the API to handle bookings.
 + `client-api` - the API microservice that handles the clients (companies & organisations).
 + `frontend` - the Next application for rendering the UI.
 
@@ -440,3 +441,45 @@ The `layout.tsx` file in the root of the frontend application is the global layo
 ## Pages
 A new client page, to add a new client, can be found here:
 `http://localhost:3000/clients/new`
+
+## Bookings
+Bookings are handled by the `booking-api`. Within this directory/folder, there is a `requirements.txt` file that lists all the dependencies. To setup the dependencies/packages:
+
+```shell
+$ cd platform/booking-api
+$ pip3 install -r requirements.txt
+```
+
+The `booking-api` is a Flask application using Python.
+
+To run the `booking-api` server:
+
+```shell
+$ python3 app.py
+```
+
+We can inspect the database - `booking-dev.db` using:
+
+```shell
+$ cd instance
+$ sqlite3 booking-dev.db
+```
+
+Then run:
+
+```shell
+$ .tables
+$ SELECT * FROM booking;
+```
+
+### Make a Booking
+
+Make sure:
+
++ Flask server (`booking-api`) is running: `http://127.0.0.1:5001` - $ python3 app.py
++ Next.js server (`frontend`) is running: `http://localhost:3000` - $ npm run dev
++ Express API (`client-api`) is running: `http://localhost:3001` - $ node server.js
+
+Go to: `http://localhost:3000/clients/1` (replace 1 with an existing company ID)
+
+Click `“Make Booking”` CTA button
