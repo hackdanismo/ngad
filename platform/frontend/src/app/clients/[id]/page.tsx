@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, use } from 'react';
 
 type Company = {
   id: number;
@@ -24,17 +24,20 @@ async function getCompany(id: string): Promise<Company | null> {
   }
 }
 
-export default function ClientPage({ params }: { params: { id: string } }) {
+export default function ClientPage({ params }: { params: Promise<{ id: string }> }) {
+  // Unwrap the params using React.use()
+  const { id } = use(params);
+
   //const company = await getCompany(params.id);
   const [company, setCompany] = useState<Company | null>(null);
   const [bookingMessage, setBookingMessage] = useState('');
 
   useEffect(() => {
     (async () => {
-      const result = await getCompany(params.id);
+      const result = await getCompany(id);
       setCompany(result);
     })();
-  }, [params.id]);
+  }, [id]);
 
   const handleBooking = async () => {
     try {
@@ -43,7 +46,7 @@ export default function ClientPage({ params }: { params: { id: string } }) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          company_id: parseInt(params.id),
+          company_id: parseInt(id),
           note: 'Booking created from the frontend'
         }),
       });
